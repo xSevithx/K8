@@ -1,0 +1,15 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: ubuntu-vs
+  namespace: ubuntu
+spec:
+  host: www.infinistake.com
+  upstreams:
+  - name: root
+    service: tea-svc
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: root
